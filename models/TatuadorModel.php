@@ -9,7 +9,7 @@
 
 
         public function __construct() {
-            $this->dbHandler = new DBHandler("localhost","root","","tattoos_bd","3307");
+            $this->dbHandler = new DBHandler("localhost","root","","tattoos_bd","3308");
         }
 
         public function insertTatuador($nombre, $email, $pass, $foto){

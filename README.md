@@ -25,6 +25,15 @@ CREATE TABLE tatuadores (
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+USUARIOS:
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE
+);
+
+
 ## EJERCICIO CLASE
 
 Una vez analizado el código que os suministro vamos a realizar un ejercicio que ponga en práctica la inserción de otros datos en la base de datos y la realización de operaciones de validación sobre dichas inserciones.
