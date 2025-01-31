@@ -16,7 +16,7 @@
 
             $this->conexion = $this->dbHandler->conectar();
 
-            $sql = "INSERT INTO $this->nombreTabla (nombre, email, pass, foto) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO $this->nombreTabla (nombre, email, password, foto) VALUES (?, ?, ?, ?)";
 
             $stmt = $this->conexion->prepare($sql);
 
@@ -56,18 +56,43 @@
 
         public function getAllTatuadores() {
             $this->conexion = $this->dbHandler->conectar();
-            $sql = "SELECT * FROM $this->nombreTabla";
+            $sql = "SELECT id, nombre, email FROM $this->nombreTabla"; // Especifica las columnas para evitar problemas
             $stmt = $this->conexion->prepare($sql);
-            
-            try {
-                $stmt->execute();
-                $tatuadores = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene todos los tatuadores como array asociativo
-                return $tatuadores;
-            } catch (Exception $e) {
-                return false;
-            } finally {
-                $this->dbHandler->desconectar(); // Cierra la conexión
+            $stmt->execute();
+            $stmt->store_result(); 
+
+            $tatuadores = [];
+            $stmt->bind_result($id, $nombre, $email);
+
+            while ($stmt->fetch()) {
+                $tatuadores[] = [
+                    "id" => $id,
+                    "nombre" => $nombre,
+                    "email" => $email
+                ];
             }
+
+            $stmt->close();
+            $this->dbHandler->desconectar();
+
+            return $tatuadores;
+        }
+
+        public function getTatuador($id) {
+            $this->conexion = $this->dbHandler->conectar();
+            $sql = "SELECT nombre, email, foto FROM $this->nombreTabla WHERE ID = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+
+            // Obtener los resultados
+            $resultado = $stmt->get_result();
+            $tatuador = $resultado->fetch_assoc(); // Devuelve un array asociativo
+
+            $stmt->close();
+            $this->dbHandler->desconectar();
+
+            return $tatuador; // Devuelve un array con los datos o null si no existe
         }
         
     }

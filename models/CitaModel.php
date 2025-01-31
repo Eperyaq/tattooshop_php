@@ -41,7 +41,7 @@
             // a) Usamos el método conectar() que hemos hecho para obtener la conexión a la BD
             $this->conexion = $this->dbHandler->conectar();
             // b) Escribimos una sentencia SQL tal cual, poniendo ? por cada columna de la tabla de la BD
-            $sql = "INSERT INTO $this->nombreTabla (id, descripcion, fechaCita, cliente, tatuador) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO $this->nombreTabla (id, descripcion, fecha_cita, cliente, tatuador_id) VALUES (?, ?, ?, ?, ?)";
             // c.1) Realizamos un prepared statement con el método .prepare() del objeto $this->conexion
             $stmt = $this->conexion->prepare($sql);
             // c.2) Intercambiamos las interrogaciones por nuestros valores. Cada s corresponde a una ?, y con la s le decimos que se trata de un string

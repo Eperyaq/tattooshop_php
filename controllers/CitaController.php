@@ -9,6 +9,7 @@
         En este caso tenemos CitaModel -> Para poder acceder a la Base de Datos
         */
         private $citaModel;
+        private $tatuadorModel;
 
         /*
         CONSTRUCTOR DE CLASE
@@ -17,12 +18,14 @@
         */
         public function __construct() {
             $this->citaModel = new CitaModel();
+            $this->tatuadorModel = new TatuadorModel();
         }
 
         /**
          * Método para mostrar el view de AltaCita -> Contiene la página para dar de alta una cita
          */
         public function showAltaCita($errores = []) {
+            $tatuadores = $this->tatuadorModel->getAllTatuadores();
             require_once "./views/citasViews/AltaCitaView.php";
         }
 
@@ -77,6 +80,7 @@
 
                 if($operacionExitosa) {
                     // LLAMAR A UNA PÁGINA QUE MUESTRE UN MENSAJE DE ÉXITO
+                    $tatuador= $this->tatuadorModel->getTatuador($input_tatuador);
                     require_once "./views/citasViews/CitaConfirmacionView.php";
                 } else {
                     // LLAMAR A ALGÚN SITIO Y MOSTRAR UN MENSAJE DE ERROR

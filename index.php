@@ -44,7 +44,7 @@
                 $tatuadorControler->showAltaTatuador();
             } elseif($requestMethod == "POST") {
                 $datos = $_POST ?? [];
-                $tatuadorControler->insertTatuador();
+                $tatuadorControler->insertTatuador($datos);
             }
             
             break;

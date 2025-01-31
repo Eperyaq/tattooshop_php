@@ -15,10 +15,10 @@ require_once "./models/TatuadorModel.php";
         }
 
         public function insertTatuador($datos = []){
-            $nombre = $datos["nombre"] ?? "";
-            $email = $datos["email"] ?? "";
+            $nombre = $datos["input_nombre"] ?? "";
+            $email = $datos["input_email"] ?? "";
             $pass = $datos["password"] ?? "";
-            $foto = $datos["foto"] ?? "";
+            $foto = $datos["input_foto"] ?? "";
 
             $errores = [];
             if($nombre == "" || $email == "" || $pass == "" || $foto == "" ) {
