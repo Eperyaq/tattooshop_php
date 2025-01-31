@@ -77,7 +77,7 @@
 
                 if($operacionExitosa) {
                     // LLAMAR A UNA PÁGINA QUE MUESTRE UN MENSAJE DE ÉXITO
-                    require_once "./views/citasViews/AltaCitaCorrectaView.php";
+                    require_once "./views/citasViews/CitaConfirmacionView.php";
                 } else {
                     // LLAMAR A ALGÚN SITIO Y MOSTRAR UN MENSAJE DE ERROR
                     $errores["error_db"] = "Error al insertar la cita, intentelo de nuevo más tarde";

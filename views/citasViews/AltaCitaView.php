@@ -57,15 +57,26 @@
                         placeholder="Nombre cliente">
                     <?php if (!empty($errores) && isset($errores["error_cliente"])): ?><small id="clienteError" class="form-text text-danger fw-bold"><?= $errores["error_cliente"] ?></small><?php endif; ?>
                 </div>
+
                 <div class="form-group">
-                    <label class="fw-lighter text-lowercase text-white" for="input_tatuador">Nombre tatuador</label>
-                    <input type="text"
-                        class="shadow form-control "
-                        id="input_tatuador"
-                        name="input_tatuador"
-                        placeholder="Nombre tatuador">
+                    <label class="fw-lighter text-lowercase text-white" for="input_tatuador">Selecciona un tatuador</label>
+
+                    <select name="input_tatuador" required>
+                        <option value="">-- Selecciona un tatuador --</option>
+                            <?php if ($tatuadores): ?>
+                                <?php foreach ($tatuadores as $tatuador): ?>
+                                    <option value="<?= $tatuador['id'] ?>">
+                                        <?= $tatuador['nombre'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <option value="">No hay tatuadores disponibles</option>
+                            <?php endif; ?>
+                    </select>
+
                     <?php if (!empty($errores) && isset($errores["error_tatuador"])): ?><small id="tatuadorError" class="form-text text-danger fw-bold"><?= $errores["error_tatuador"] ?></small><?php endif; ?>
                 </div>
+
                 <div class="container__btns-form">
                     <button type="submit" class="btn btn-primary btns-form__btn-enviar">Enviar</button>
                     <button type="reset" class="btn btn-danger">Borrar</button>

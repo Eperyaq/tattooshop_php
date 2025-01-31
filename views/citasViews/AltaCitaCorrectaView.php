@@ -13,7 +13,8 @@
 
 <body>
 
-    <h1>ALTA CORRECTA</h1>
+    <h1>Cita confirmada</h1>
+
 
 </body>
 

@@ -2,6 +2,29 @@
 
 Fork este repo
 
+# Sentencia para crear las tablas 
+
+CITAS: 
+CREATE TABLE citas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion TEXT NOT NULL,
+    fecha_cita DATETIME NOT NULL,
+    cliente VARCHAR(150) NOT NULL,
+    tatuador_id INT NOT NULL,
+    FOREIGN KEY (tatuador_id) REFERENCES tatuadores(id) ON DELETE CASCADE
+);
+
+
+TATUADORES:
+CREATE TABLE tatuadores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    foto VARCHAR(255),
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 ## EJERCICIO CLASE
 
 Una vez analizado el código que os suministro vamos a realizar un ejercicio que ponga en práctica la inserción de otros datos en la base de datos y la realización de operaciones de validación sobre dichas inserciones.
